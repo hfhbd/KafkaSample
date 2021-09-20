@@ -9,7 +9,7 @@ repositories {
 dependencies {
     implementation(projects.shared)
 
-    implementation("org.apache.kafka:kafka-clients:2.8.0")
+    implementation("org.apache.kafka:kafka-clients:2.8.1")
 
     testImplementation(kotlin("test"))
 }

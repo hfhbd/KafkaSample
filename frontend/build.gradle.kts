@@ -23,7 +23,7 @@ kotlin {
     sourceSets {
         commonMain {
             dependencies {
-                implementation("io.ktor:ktor-client-core:1.6.3")
+                implementation("io.ktor:ktor-client-core:1.6.4")
                 implementation(projects.shared)
             }
         }

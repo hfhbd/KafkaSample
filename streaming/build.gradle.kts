@@ -11,7 +11,7 @@ dependencies {
 
     implementation("org.testcontainers:kafka:1.16.2")
     implementation("org.apache.kafka:kafka-streams:3.0.0")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0")
 
     testImplementation(kotlin("test"))
 }

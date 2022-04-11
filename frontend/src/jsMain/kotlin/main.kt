@@ -1,13 +1,12 @@
 import androidx.compose.runtime.*
 import app.softwork.bootstrapcompose.*
 import io.ktor.client.*
+import io.ktor.client.call.*
 import io.ktor.client.engine.js.*
-import io.ktor.client.features.*
-import io.ktor.client.request.*
+import io.ktor.client.plugins.*
+import io.ktor.client.plugins.resources.*
 import io.ktor.http.*
 import kotlinx.coroutines.*
-import kotlinx.serialization.builtins.*
-import kotlinx.serialization.json.*
 import org.jetbrains.compose.web.*
 import org.jetbrains.compose.web.dom.*
 
@@ -29,6 +28,8 @@ fun MainApp(backendPort: Int) {
                 port = backendPort
             }
         }
+
+        install(Resources)
     }
     Navbar()
 
@@ -37,16 +38,13 @@ fun MainApp(backendPort: Int) {
 
         Button("Refresh") {
             scope.launch {
-                data = Routes.output by client.get(urlString = Routes.output.path)
+                data = client.get(Output()).body()
             }
         }
 
         DataTable(data)
     }
 }
-
-private infix fun <T> Routes.Get<T>.by(string: String): List<T> =
-    Json.decodeFromString(ListSerializer(serializer), string)
 
 @Composable
 private fun DataTable(data: List<Classified>) {

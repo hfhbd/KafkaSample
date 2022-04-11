@@ -1,8 +1,10 @@
+import io.ktor.resources.*
 import kotlinx.serialization.*
 
-object Routes {
-    data class Get<Out>(val path: String, val serializer: KSerializer<Out>, )
+@Serializable
+@Resource("/input")
+class Input
 
-    val input = Get("/input", Data.serializer())
-    val output = Get("/output", Classified.serializer())
-}
+@Serializable
+@Resource("/output")
+class Output

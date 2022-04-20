@@ -4,8 +4,10 @@ import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.engine.js.*
 import io.ktor.client.plugins.*
+import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.client.plugins.resources.*
 import io.ktor.http.*
+import io.ktor.serialization.kotlinx.json.*
 import kotlinx.coroutines.*
 import org.jetbrains.compose.web.*
 import org.jetbrains.compose.web.dom.*
@@ -30,6 +32,9 @@ fun MainApp(backendPort: Int) {
         }
 
         install(Resources)
+        install(ContentNegotiation) {
+            json()
+        }
     }
     Navbar()
 
@@ -41,8 +46,9 @@ fun MainApp(backendPort: Int) {
                 data = client.get(Output()).body()
             }
         }
-
-        DataTable(data)
+        if (data.isNotEmpty()) {
+            DataTable(data)
+        }
     }
 }
 

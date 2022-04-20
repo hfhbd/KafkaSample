@@ -18,7 +18,7 @@ suspend fun main() = coroutineScope {
 }
 
 private fun useTestContainer(): Pair<String, Int> {
-    val kafkaServer = KafkaContainer(DockerImageName.parse("confluentinc/cp-kafka:6.1.1")).apply {
+    val kafkaServer = KafkaContainer(DockerImageName.parse("confluentinc/cp-kafka:6.2.0")).apply {
         start()
     }
     return kafkaServer.host to kafkaServer.firstMappedPort
@@ -68,8 +68,8 @@ class KafkaStreaming(private val converter: Converter<Data, Classified>) {
         val props = Properties().apply {
             put(StreamsConfig.APPLICATION_ID_CONFIG, "kafkaDemo")
             put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, "$host:$port")
-            put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().javaClass)
-            put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, Serdes.String().javaClass)
+            put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.StringSerde().javaClass)
+            put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, Serdes.StringSerde().javaClass)
         }
 
         AdminClient.create(props).use {

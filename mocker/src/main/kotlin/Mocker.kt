@@ -5,18 +5,16 @@ import java.util.*
 import kotlin.random.Random
 import kotlin.time.Duration.Companion.seconds
 
-fun main() {
+suspend fun main() {
     Mocker(kafkaPort = 9092)
 }
 
-fun Mocker(kafkaPort: Int) {
+suspend fun Mocker(kafkaPort: Int) {
     val producer = inputTopic.producer(kafkaProperties(kafkaPort))
 
-    runBlocking {
-        while (true) {
-            producer.write(Data(value1 = Random.nextInt(0, 10), value2 = Random.nextInt(40, 50)), flush = true)
-            delay(1.seconds)
-        }
+    while (true) {
+        producer.write(Data(value1 = Random.nextInt(0, 10), value2 = Random.nextInt(40, 50)), flush = true)
+        delay(1.seconds)
     }
 }
 

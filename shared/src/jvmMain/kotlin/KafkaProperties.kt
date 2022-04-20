@@ -29,4 +29,7 @@ fun kafkaProperties(port: Int) = Properties().apply {
     this["value.serializer"] = "org.apache.kafka.common.serialization.StringSerializer"
     this["key.deserializer"] = "org.apache.kafka.common.serialization.StringDeserializer"
     this["value.deserializer"] = "org.apache.kafka.common.serialization.StringDeserializer"
+    this["default.key.serde"] = "org.apache.kafka.common.serialization.Serdes\$StringSerde"
+    this["default.value.serde"] = "org.apache.kafka.common.serialization.Serdes\$StringSerde"
+    this["application.id"] = "kafkaDemo"
 }

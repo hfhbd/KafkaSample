@@ -7,6 +7,7 @@ import io.ktor.server.plugins.cors.*
 import io.ktor.server.resources.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
+import kotlinx.coroutines.*
 import kotlinx.serialization.json.*
 import org.apache.kafka.clients.consumer.*
 import java.util.*
@@ -15,7 +16,7 @@ import kotlin.time.*
 import kotlin.time.Duration.Companion.seconds
 
 
-fun main() {
+suspend fun main() = coroutineScope {
     Backend(9092)
 }
 
@@ -52,7 +53,7 @@ private fun Application.kafkaViewer(port: Int) {
     }
 }
 
-fun Backend(kafkaPort: Int) {
+fun CoroutineScope.Backend(kafkaPort: Int) {
     embeddedServer(CIO, port = 8888) {
         install(CORS) {
             anyHost()
@@ -61,6 +62,7 @@ fun Backend(kafkaPort: Int) {
         install(ContentNegotiation) {
             json()
         }
+        install(Resources)
 
         kafkaViewer(port = kafkaPort)
 

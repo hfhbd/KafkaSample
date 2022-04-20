@@ -23,7 +23,11 @@ kotlin {
     sourceSets {
         commonMain {
             dependencies {
-                implementation("io.ktor:ktor-client-core:1.6.8")
+                val ktor = "2.0.0"
+                implementation("io.ktor:ktor-client-core:$ktor")
+                implementation("io.ktor:ktor-client-content-negotiation:$ktor")
+                implementation("io.ktor:ktor-serialization-kotlinx-json:$ktor")
+                implementation("io.ktor:ktor-client-resources:$ktor")
                 implementation(projects.shared)
             }
         }
@@ -36,7 +40,7 @@ kotlin {
 
         val jsMain by getting {
             dependencies {
-                implementation("app.softwork:bootstrap-compose:0.0.51")
+                implementation("app.softwork:bootstrap-compose:0.0.52-dev670")
                 implementation(compose.web.core)
             }
         }

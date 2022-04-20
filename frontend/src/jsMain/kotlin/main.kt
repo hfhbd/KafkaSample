@@ -48,7 +48,7 @@ fun MainApp(backendPort: Int) {
 
 @Composable
 private fun DataTable(data: List<Classified>) {
-    Table(data) { index, it ->
+    Table(data) { _, it ->
         column("Value 1") {
             Text(it.originalData.value1.toString())
         }

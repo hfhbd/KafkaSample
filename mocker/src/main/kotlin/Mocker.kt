@@ -4,6 +4,7 @@ import org.apache.kafka.clients.producer.*
 import java.util.*
 import kotlin.random.Random
 import kotlin.time.*
+import kotlin.time.Duration.Companion.seconds
 
 @ExperimentalTime
 fun main() {

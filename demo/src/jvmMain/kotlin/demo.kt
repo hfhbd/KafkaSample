@@ -1,7 +1,5 @@
 import kotlinx.coroutines.*
-import kotlin.time.*
 
-@ExperimentalTime
 suspend fun main() = coroutineScope {
     KafkaStreaming(converter = StaticConverter())
         .start(this) { port ->

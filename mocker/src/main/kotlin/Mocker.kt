@@ -3,15 +3,12 @@ import kotlinx.serialization.json.*
 import org.apache.kafka.clients.producer.*
 import java.util.*
 import kotlin.random.Random
-import kotlin.time.*
 import kotlin.time.Duration.Companion.seconds
 
-@ExperimentalTime
 fun main() {
     Mocker(kafkaPort = 9092)
 }
 
-@ExperimentalTime
 fun Mocker(kafkaPort: Int) {
     val producer = inputTopic.producer(kafkaProperties(kafkaPort))
 

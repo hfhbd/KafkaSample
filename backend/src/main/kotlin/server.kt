@@ -15,12 +15,10 @@ import kotlin.time.*
 import kotlin.time.Duration.Companion.seconds
 
 
-@ExperimentalTime
 fun main() {
     Backend(9092)
 }
 
-@ExperimentalTime
 private fun <T> Topic<T>.consumer(properties: Properties): Consumer<T> {
     val consumer = KafkaConsumer<String, String>(properties)
     consumer.subscribe(listOf(name))
@@ -34,12 +32,10 @@ private fun <T> Topic<T>.consumer(properties: Properties): Consumer<T> {
     }
 }
 
-@ExperimentalTime
 fun interface Consumer<T> {
     suspend fun poll(pollTimeout: Duration): List<T>
 }
 
-@ExperimentalTime
 private fun Application.kafkaViewer(port: Int) {
     val properties = kafkaProperties(port)
 
@@ -56,7 +52,6 @@ private fun Application.kafkaViewer(port: Int) {
     }
 }
 
-@ExperimentalTime
 fun Backend(kafkaPort: Int) {
     embeddedServer(CIO, port = 8888) {
         install(CORS) {

@@ -9,8 +9,6 @@ import org.testcontainers.utility.*
 import java.util.*
 import kotlin.time.*
 
-
-@ExperimentalTime
 suspend fun main() = coroutineScope {
     KafkaStreaming {
         Classified("Dummy", originalData = it, classifier = Classifier.Healthy)
@@ -26,19 +24,16 @@ private fun useTestContainer(): Pair<String, Int> {
     return kafkaServer.host to kafkaServer.firstMappedPort
 }
 
-@ExperimentalTime
 class NewTopConfig {
     var retentionTime: Duration? = null
     var retentionBytes: Long? = null
 
-    fun build() =
-        mapOf(
-            "retention.ms" to (retentionTime?.inWholeMilliseconds ?: -1).toString(),
-            "retention.bytes" to (retentionBytes ?: -1).toString()
-        )
+    fun build() = mapOf(
+        "retention.ms" to (retentionTime?.inWholeMilliseconds ?: -1).toString(),
+        "retention.bytes" to (retentionBytes ?: -1).toString()
+    )
 }
 
-@ExperimentalTime
 fun <T> AdminClient.create(
     topic: Topic<T>,
     numPartitions: Int = 1,
@@ -50,12 +45,11 @@ fun <T> AdminClient.create(
     }))
 }
 
-fun<T, Out> Topic<T>.map(output: Topic<Out>, properties: Properties, block: suspend (T) -> Out) {
+fun <T, Out> Topic<T>.map(output: Topic<Out>, properties: Properties, block: suspend (T) -> Out) {
     val builder = StreamsBuilder()
     val textLines = builder.stream<String, String>(name)
 
-    val classifiedData: KStream<String, String> = textLines
-        .mapValues { _, input ->
+    val classifiedData: KStream<String, String> = textLines.mapValues { _, input ->
             val data = Json.decodeFromString(serializer, input)
             val out = runBlocking(Dispatchers.Default) { block(data) }
             Json.encodeToString(output.serializer, out)
@@ -68,7 +62,6 @@ fun<T, Out> Topic<T>.map(output: Topic<Out>, properties: Properties, block: susp
 
 
 class KafkaStreaming(private val converter: Converter<Data, Classified>) {
-    @ExperimentalTime
     suspend fun start(scope: CoroutineScope, onStart: suspend (Int) -> Unit) {
         val (host, port) = useTestContainer()
 

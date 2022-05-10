@@ -13,7 +13,7 @@ application {
 
 dependencies {
     implementation(projects.shared)
-    implementation("org.apache.kafka:kafka-clients:3.1.0")
+    implementation("org.apache.kafka:kafka-clients:3.2.0")
 
     val ktor = "2.0.1"
     implementation("io.ktor:ktor-server-cio:$ktor")

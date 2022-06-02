@@ -20,7 +20,7 @@ kotlin {
                 val ktor = "2.0.2"
                 api("io.ktor:ktor-resources:$ktor")
                 api("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.3")
-                api("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1")
+                api("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.2")
             }
         }
 

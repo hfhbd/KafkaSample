@@ -1,26 +1,16 @@
 plugins {
-    kotlin("multiplatform")
+    kotlin("jvm")
 }
 
 repositories {
     mavenCentral()
 }
 
-kotlin {
-    jvm()
+dependencies {
+    implementation(projects.shared)
 
-    sourceSets {
-        val jvmMain by getting {
-            dependencies {
-                implementation(projects.shared)
-
-                implementation(projects.streaming)
-                implementation(projects.mocker)
-                implementation(projects.converter)
-                implementation(projects.backend)
-
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1")
-            }
-        }
-    }
+    implementation(projects.streaming)
+    implementation(projects.mocker)
+    implementation(projects.converter)
+    implementation(projects.backend)
 }

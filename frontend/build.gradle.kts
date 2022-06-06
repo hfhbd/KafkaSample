@@ -1,5 +1,5 @@
 plugins {
-    kotlin("multiplatform")
+    kotlin("js")
     id("org.jetbrains.compose")
 }
 
@@ -10,42 +10,28 @@ repositories {
 
 kotlin {
     js(IR) {
-        binaries.executable()
         browser {
-            testTask {
-                useKarma {
-                    useChromeHeadless()
-                }
-            }
+            binaries.executable()
+            useCommonJs()
             commonWebpackConfig {
                 cssSupport.enabled = true
             }
         }
     }
+}
 
-    sourceSets {
-        commonMain {
-            dependencies {
-                val ktor = "2.0.2"
-                implementation("io.ktor:ktor-client-core:$ktor")
-                implementation("io.ktor:ktor-client-content-negotiation:$ktor")
-                implementation("io.ktor:ktor-serialization-kotlinx-json:$ktor")
-                implementation("io.ktor:ktor-client-resources:$ktor")
-                implementation(projects.shared)
-            }
-        }
+dependencies {
+    val ktor = "2.0.2"
+    implementation("io.ktor:ktor-client-core:$ktor")
+    implementation("io.ktor:ktor-client-content-negotiation:$ktor")
+    implementation("io.ktor:ktor-serialization-kotlinx-json:$ktor")
+    implementation("io.ktor:ktor-client-resources:$ktor")
+    implementation(projects.shared)
 
-        commonTest {
-            dependencies {
-                implementation(kotlin("test"))
-            }
-        }
+    implementation(compose.web.core)
+    implementation("app.softwork:bootstrap-compose:0.0.52")
+    implementation(devNpm("sass-loader", "^13.0.0"))
+    implementation(devNpm("sass", "^1.52.1"))
 
-        val jsMain by getting {
-            dependencies {
-                implementation("app.softwork:bootstrap-compose:0.0.52")
-                implementation(compose.web.core)
-            }
-        }
-    }
+    testImplementation(kotlin("test"))
 }

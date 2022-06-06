@@ -4,13 +4,15 @@ import org.jetbrains.compose.web.dom.*
 
 @Composable
 fun Navbar() {
-    Nav(attrs = {
-        classes("navbar", "navbar-expand-${Breakpoint.Medium}", "navbar-${Color.Dark}", "sticky-top", "bg-${Color.Dark}")
-    }) {
-        Container(type = Breakpoint.ExtraExtraLarge) {
-            Brand {
-                Text("KafkaDemo")
-            }
+    Navbar(
+        collapseBehavior = NavbarCollapseBehavior.AtBreakpoint(Breakpoint.Medium),
+        colorScheme = Color.Dark,
+        placement = NavbarPlacement.StickyTop,
+        backgroundColor = Color.Dark,
+        containerBreakpoint = Breakpoint.ExtraExtraLarge
+    ) {
+        Brand {
+            Text("KafkaDemo")
         }
     }
 }

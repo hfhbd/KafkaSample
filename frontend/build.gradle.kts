@@ -29,7 +29,7 @@ dependencies {
     implementation(projects.shared)
 
     implementation(compose.web.core)
-    implementation("app.softwork:bootstrap-compose:0.1.4")
+    implementation("app.softwork:bootstrap-compose:0.1.5")
     implementation(devNpm("sass-loader", "^13.0.0"))
     implementation(devNpm("sass", "^1.52.1"))
 

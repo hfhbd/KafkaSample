@@ -19,7 +19,7 @@ kotlin {
             dependencies {
                 val ktor = "2.1.0"
                 api("io.ktor:ktor-resources:$ktor")
-                api("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.3")
+                api("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.0")
             }
         }
 

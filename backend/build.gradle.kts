@@ -1,6 +1,7 @@
 plugins {
     kotlin("jvm")
     application
+    id("app.cash.licensee")
 }
 
 repositories {
@@ -23,4 +24,11 @@ dependencies {
     implementation("io.ktor:ktor-server-cors:$ktor")
 
     testImplementation(kotlin("test"))
+}
+
+licensee {
+    allow("Apache-2.0")
+    allow("MIT")
+    allow("EPL-1.0")
+    allow("BSD-2-Clause")
 }

@@ -1,6 +1,7 @@
 plugins {
     kotlin("multiplatform")
     kotlin("plugin.serialization")
+    id("app.cash.licensee")
 }
 
 repositories {
@@ -29,4 +30,9 @@ kotlin {
             }
         }
     }
+}
+
+licensee {
+    allow("Apache-2.0")
+    allow("MIT")
 }

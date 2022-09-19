@@ -10,7 +10,7 @@ repositories {
 dependencies {
     implementation(projects.shared)
 
-    implementation("org.apache.kafka:kafka-clients:3.2.2")
+    implementation("org.apache.kafka:kafka-clients:3.2.3")
 
     testImplementation(kotlin("test"))
 }

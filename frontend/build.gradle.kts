@@ -36,3 +36,7 @@ dependencies {
 
     testImplementation(kotlin("test"))
 }
+
+licensee {
+    allow("Apache-2.0")
+}

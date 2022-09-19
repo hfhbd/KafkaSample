@@ -1,6 +1,7 @@
 plugins {
     kotlin("js")
     id("org.jetbrains.compose")
+    id("app.cash.licensee")
 }
 
 repositories {

@@ -13,7 +13,7 @@ application {
 }
 
 dependencies {
-    implementation(projects.shared)
+    implementation(projects.streaming)
     implementation("org.apache.kafka:kafka-clients:3.2.3")
 
     val ktor = "2.1.1"

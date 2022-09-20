@@ -12,7 +12,6 @@ dependencies {
 
     implementation(projects.streaming)
     implementation(projects.mocker)
-    implementation(projects.converter)
     implementation(projects.backend)
 }
 

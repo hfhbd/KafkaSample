@@ -1,3 +1,4 @@
+
 import io.ktor.serialization.kotlinx.json.*
 import io.ktor.server.application.*
 import io.ktor.server.cio.*
@@ -8,52 +9,34 @@ import io.ktor.server.resources.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import kotlinx.coroutines.*
-import kotlinx.serialization.json.*
-import org.apache.kafka.clients.consumer.*
-import java.util.*
-import kotlin.coroutines.*
-import kotlin.time.*
+import kotlinx.coroutines.flow.*
 import kotlin.time.Duration.Companion.seconds
 
 
 suspend fun main() = coroutineScope {
-    Backend(9092)
+    Backend(Address("localhost", 9092))
 }
 
-private fun <T> Topic<T>.consumer(properties: Properties): Consumer<T> {
-    val consumer = KafkaConsumer<String, String>(properties)
-    consumer.subscribe(listOf(name))
-    return Consumer { pollTimeout ->
-        suspendCoroutine {
-            val results = consumer.poll(pollTimeout.toJavaDuration())
-            it.resume(results.map {
-                Json.decodeFromString(serializer, it.value())
-            })
-        }
-    }
-}
-
-fun interface Consumer<T> {
-    suspend fun poll(pollTimeout: Duration): List<T>
-}
-
-private fun Application.kafkaViewer(port: Int) {
-    val properties = kafkaProperties(port)
+private fun Application.kafkaViewer(kafka: Address) {
 
     routing {
-        val outputConsumer = outputTopic.consumer(properties)
+        val outputConsumer = OutputTopic(kafka).consumeFlow(ConsumeStart.Latest)
         get<Output> {
-            call.respond(outputConsumer.poll(1.seconds))
+            val output = outputConsumer.take(10).toList().flatten()
+            call.respond(output)
         }
 
-        val inputConsumer = inputTopic.consumer(properties)
+        val inputConsumer = InputTopic(kafka).consumeFlow(ConsumeStart.Latest)
         get<Input> {
-            call.respond(inputConsumer.poll(1.seconds))
+            val input = inputConsumer.onEach {
+                delay(1.seconds)
+            }.take(5).toList()
+            call.respond(input)
         }
     }
 }
 
-fun CoroutineScope.Backend(kafkaPort: Int) {
+fun CoroutineScope.Backend(kafka: Address) {
     embeddedServer(CIO, port = 8888) {
         install(CORS) {
             anyHost()
@@ -64,7 +47,7 @@ fun CoroutineScope.Backend(kafkaPort: Int) {
         }
         install(Resources)
 
-        kafkaViewer(port = kafkaPort)
+        kafkaViewer(kafka)
 
         routing {
             get("/") {

@@ -9,6 +9,7 @@ import io.ktor.client.plugins.resources.*
 import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
 import kotlinx.coroutines.*
+import kotlinx.datetime.*
 import org.jetbrains.compose.web.*
 import org.jetbrains.compose.web.dom.*
 
@@ -47,6 +48,9 @@ fun MainApp(backendPort: Int) {
             }
         }
         if (data.isNotEmpty()) {
+            P {
+                Text("Got ${data.size}")
+            }
             DataTable(data)
         }
     }
@@ -54,7 +58,10 @@ fun MainApp(backendPort: Int) {
 
 @Composable
 private fun DataTable(data: List<Classified>) {
-    Table(data) { _, it ->
+    Table(data) { index, it ->
+        column("Nr") {
+            Text("$index")
+        }
         column("Value 1") {
             Text(it.originalData.value1.toString())
         }
@@ -66,6 +73,12 @@ private fun DataTable(data: List<Classified>) {
         }
         column("Model Name") {
             Text(it.modelName)
+        }
+        column("Created") {
+            Text(it.originalData.creationTime.toJSDate().toLocaleString())
+        }
+        column("Modified") {
+            Text(it.modifiedDate.toJSDate().toLocaleString())
         }
     }
 }

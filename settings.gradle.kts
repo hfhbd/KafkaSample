@@ -14,6 +14,5 @@ include(":backend")
 include(":frontend")
 include(":mocker")
 include(":streaming")
-include(":converter")
 
 include(":demo")

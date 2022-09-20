@@ -1,14 +1,25 @@
 import kotlinx.coroutines.*
+import kotlinx.datetime.*
 
 suspend fun main() = coroutineScope {
-    KafkaStreaming(converter = StaticConverter())
-        .start(this) { port ->
-            launch {
-                Backend(kafkaPort = port)
-            }
-            launch {
-                Mocker(kafkaPort = port)
-            }
-            // You must start the frontend by yourself
-        }
+    val kafka = useTestContainer()
+
+    val clock = Clock.System
+
+    launch {
+        Backend(kafka)
+    }
+    launch {
+        Mocker(kafka, clock)
+    }
+    // You must start the frontend by yourself (:frontend:browserProductionRun)
+
+    Service(kafka, clock) {
+        Classified(
+            modelName = "StaticConverter",
+            originalData = it,
+            classifier = Classifier.Healthy,
+            modifiedDate = clock.now()
+        )
+    }
 }

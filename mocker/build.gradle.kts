@@ -8,9 +8,7 @@ repositories {
 }
 
 dependencies {
-    implementation(projects.shared)
-
-    implementation("org.apache.kafka:kafka-clients:3.2.3")
+    implementation(projects.streaming)
 
     testImplementation(kotlin("test"))
 }

@@ -10,7 +10,7 @@ repositories {
 dependencies {
     api(projects.shared)
 
-    implementation("org.testcontainers:kafka:1.17.3")
+    implementation("org.testcontainers:kafka:1.17.4")
     implementation("org.apache.kafka:kafka-streams:3.3.0")
 
     testImplementation(kotlin("test"))

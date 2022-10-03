@@ -18,7 +18,7 @@ kotlin {
     sourceSets {
         commonMain {
             dependencies {
-                val ktor = "2.1.1"
+                val ktor = "2.1.2"
                 api("io.ktor:ktor-resources:$ktor")
                 api("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.0")
                 api("org.jetbrains.kotlinx:kotlinx-datetime:0.4.0")
@@ -27,7 +27,7 @@ kotlin {
 
         val jvmMain by getting {
             dependencies {
-                runtimeOnly("ch.qos.logback:logback-classic:1.4.1")
+                runtimeOnly("ch.qos.logback:logback-classic:1.4.3")
             }
         }
     }

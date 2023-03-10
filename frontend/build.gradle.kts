@@ -15,7 +15,7 @@ kotlin {
             binaries.executable()
             useCommonJs()
             commonWebpackConfig {
-                cssSupport.enabled = true
+                scssSupport.enabled.set(true)
             }
         }
     }
@@ -31,8 +31,6 @@ dependencies {
 
     implementation(compose.web.core)
     implementation("app.softwork:bootstrap-compose:0.1.14")
-    implementation(devNpm("sass-loader", "^13.0.0"))
-    implementation(devNpm("sass", "^1.52.1"))
 
     testImplementation(kotlin("test"))
 }

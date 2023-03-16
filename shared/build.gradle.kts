@@ -27,7 +27,7 @@ kotlin {
 
         val jvmMain by getting {
             dependencies {
-                runtimeOnly("ch.qos.logback:logback-classic:1.4.5")
+                runtimeOnly("ch.qos.logback:logback-classic:1.4.6")
             }
         }
     }

@@ -15,7 +15,9 @@ kotlin {
             binaries.executable()
             useCommonJs()
             commonWebpackConfig {
-                scssSupport.enabled.set(true)
+                scssSupport {
+                    enabled.set(true)
+                }
             }
         }
     }

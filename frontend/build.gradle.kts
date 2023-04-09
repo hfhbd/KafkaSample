@@ -32,7 +32,7 @@ dependencies {
     implementation(projects.shared)
 
     implementation(compose.web.core)
-    implementation("app.softwork:bootstrap-compose:0.1.14")
+    implementation("app.softwork:bootstrap-compose:0.1.15")
 
     testImplementation(kotlin("test"))
 }

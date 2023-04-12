@@ -4,13 +4,11 @@ plugins {
     id("app.cash.licensee")
 }
 
-repositories {
-    mavenCentral()
-}
-
 application {
     mainClass.set("ServerKt")
 }
+
+kotlin.jvmToolchain(11)
 
 dependencies {
     implementation(projects.streaming)

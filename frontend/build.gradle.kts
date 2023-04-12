@@ -4,18 +4,15 @@ plugins {
     id("app.cash.licensee")
 }
 
-repositories {
-    mavenCentral()
-    maven(url = "https://maven.pkg.jetbrains.space/public/p/compose/dev")
-}
-
 kotlin {
     js(IR) {
         browser {
             binaries.executable()
             useCommonJs()
             commonWebpackConfig {
-                cssSupport.enabled = true
+                scssSupport {
+                    enabled.set(true)
+                }
             }
         }
     }
@@ -30,9 +27,7 @@ dependencies {
     implementation(projects.shared)
 
     implementation(compose.web.core)
-    implementation("app.softwork:bootstrap-compose:0.1.14")
-    implementation(devNpm("sass-loader", "^13.0.0"))
-    implementation(devNpm("sass", "^1.52.1"))
+    implementation("app.softwork:bootstrap-compose:0.1.15")
 
     testImplementation(kotlin("test"))
 }

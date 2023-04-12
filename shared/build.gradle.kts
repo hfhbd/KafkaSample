@@ -4,11 +4,9 @@ plugins {
     id("app.cash.licensee")
 }
 
-repositories {
-    mavenCentral()
-}
-
 kotlin {
+    jvmToolchain(11)
+
     jvm()
     js(IR) {
         browser()

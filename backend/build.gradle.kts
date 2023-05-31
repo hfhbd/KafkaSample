@@ -14,7 +14,7 @@ dependencies {
     implementation(projects.streaming)
     implementation("org.apache.kafka:kafka-clients:3.4.0")
 
-    val ktor = "2.3.0"
+    val ktor = "2.3.1"
     implementation("io.ktor:ktor-server-cio:$ktor")
     implementation("io.ktor:ktor-server-resources:$ktor")
     implementation("io.ktor:ktor-server-content-negotiation:$ktor")

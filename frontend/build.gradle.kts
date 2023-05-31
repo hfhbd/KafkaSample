@@ -19,7 +19,7 @@ kotlin {
 }
 
 dependencies {
-    val ktor = "2.3.0"
+    val ktor = "2.3.1"
     implementation("io.ktor:ktor-client-core:$ktor")
     implementation("io.ktor:ktor-client-content-negotiation:$ktor")
     implementation("io.ktor:ktor-serialization-kotlinx-json:$ktor")

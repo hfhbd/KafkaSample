@@ -8,7 +8,7 @@ kotlin.jvmToolchain(11)
 dependencies {
     api(projects.shared)
 
-    implementation("org.testcontainers:kafka:1.18.2")
+    implementation("org.testcontainers:kafka:1.18.3")
     implementation("org.apache.kafka:kafka-streams:3.4.0")
 
     testImplementation(kotlin("test"))

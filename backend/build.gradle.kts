@@ -12,7 +12,7 @@ kotlin.jvmToolchain(11)
 
 dependencies {
     implementation(projects.streaming)
-    implementation("org.apache.kafka:kafka-clients:3.4.1")
+    implementation("org.apache.kafka:kafka-clients:3.5.0")
 
     val ktor = "2.3.1"
     implementation("io.ktor:ktor-server-cio:$ktor")

@@ -16,16 +16,15 @@ kotlin {
     sourceSets {
         commonMain {
             dependencies {
-                val ktor = "2.3.1"
-                api("io.ktor:ktor-resources:$ktor")
-                api("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1")
-                api("org.jetbrains.kotlinx:kotlinx-datetime:0.4.0")
+                api(libs.ktor.resources)
+                api(libs.serialization.json)
+                api(libs.datetime)
             }
         }
 
         val jvmMain by getting {
             dependencies {
-                runtimeOnly("ch.qos.logback:logback-classic:1.4.8")
+                runtimeOnly(libs.logback)
             }
         }
     }

@@ -19,15 +19,14 @@ kotlin {
 }
 
 dependencies {
-    val ktor = "2.3.1"
-    implementation("io.ktor:ktor-client-core:$ktor")
-    implementation("io.ktor:ktor-client-content-negotiation:$ktor")
-    implementation("io.ktor:ktor-serialization-kotlinx-json:$ktor")
-    implementation("io.ktor:ktor-client-resources:$ktor")
+    implementation(libs.ktor.client.core)
+    implementation(libs.ktor.client.content.negotiation)
+    implementation(libs.ktor.serialization.kotlinx.json)
+    implementation(libs.ktor.client.resources)
     implementation(projects.shared)
 
     implementation(compose.web.core)
-    implementation("app.softwork:bootstrap-compose:0.1.15")
+    implementation(libs.bootstrap.compose)
 
     testImplementation(kotlin("test"))
 }

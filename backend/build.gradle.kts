@@ -1,6 +1,6 @@
 plugins {
     kotlin("jvm")
-    application
+    id("application")
     id("app.cash.licensee")
 }
 
@@ -12,14 +12,13 @@ kotlin.jvmToolchain(11)
 
 dependencies {
     implementation(projects.streaming)
-    implementation("org.apache.kafka:kafka-clients:3.5.0")
+    implementation(libs.kafka.clients)
 
-    val ktor = "2.3.1"
-    implementation("io.ktor:ktor-server-cio:$ktor")
-    implementation("io.ktor:ktor-server-resources:$ktor")
-    implementation("io.ktor:ktor-server-content-negotiation:$ktor")
-    implementation("io.ktor:ktor-serialization-kotlinx-json:$ktor")
-    implementation("io.ktor:ktor-server-cors:$ktor")
+    implementation(libs.ktor.server.cio)
+    implementation(libs.ktor.server.resources)
+    implementation(libs.ktor.server.content.negotiation)
+    implementation(libs.ktor.serialization.kotlinx.json)
+    implementation(libs.ktor.server.cors)
 
     testImplementation(kotlin("test"))
 }

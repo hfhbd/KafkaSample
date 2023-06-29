@@ -16,7 +16,7 @@ kotlin {
     sourceSets {
         commonMain {
             dependencies {
-                val ktor = "2.3.1"
+                val ktor = "2.3.2"
                 api("io.ktor:ktor-resources:$ktor")
                 api("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1")
                 api("org.jetbrains.kotlinx:kotlinx-datetime:0.4.0")

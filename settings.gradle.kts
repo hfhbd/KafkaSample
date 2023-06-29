@@ -1,14 +1,13 @@
 pluginManagement {
+    includeBuild("gradle/build-logic")
     repositories {
         mavenCentral()
         gradlePluginPortal()
     }
 }
 
-dependencyResolutionManagement {
-    repositories { 
-        mavenCentral()
-    }
+plugins {
+    id("myRepos")
 }
 
 rootProject.name = "KafkaSample"

@@ -22,7 +22,7 @@ kotlin {
             }
         }
 
-        val jvmMain by getting {
+        named("jvmMain") {
             dependencies {
                 runtimeOnly(libs.logback)
             }

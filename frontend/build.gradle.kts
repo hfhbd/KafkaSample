@@ -25,7 +25,7 @@ dependencies {
     implementation(libs.ktor.client.resources)
     implementation(projects.shared)
 
-    implementation(compose.web.core)
+    implementation(compose.html.core)
     implementation(libs.bootstrap.compose)
 
     testImplementation(kotlin("test"))

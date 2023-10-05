@@ -1,7 +1,7 @@
 [versions]
 kotlin = "1.9.10"
 ktor = "2.3.4"
-kafka = "3.5.1"
+kafka = "3.6.0"
 
 [libraries]
 ktor-resources = { module = "io.ktor:ktor-resources", version.ref = "ktor" }

@@ -33,4 +33,5 @@ kotlin {
 licensee {
     allow("Apache-2.0")
     allow("MIT")
+    allow("EPL-1.0")
 }

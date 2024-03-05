@@ -1,6 +1,6 @@
 [versions]
 kotlin = "1.9.22"
-ktor = "2.3.8"
+ktor = "2.3.9"
 kafka = "3.7.0"
 
 [libraries]

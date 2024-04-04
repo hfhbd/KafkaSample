@@ -1,5 +1,5 @@
 [versions]
-kotlin = "1.9.22"
+kotlin = "1.9.23"
 ktor = "2.3.9"
 kafka = "3.7.0"
 
@@ -29,5 +29,5 @@ bootstrap-compose = { module = "app.softwork:bootstrap-compose", version = "0.1.
 [plugins]
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
-jetbrains-compose = { id = "org.jetbrains.compose", version = "1.5.12" }
+jetbrains-compose = { id = "org.jetbrains.compose", version = "1.6.1" }
 licensee = { id = "app.cash.licensee", version = "1.11.0" }

@@ -23,7 +23,7 @@ testcontainers-kafka = { module = "org.testcontainers:kafka", version = "1.19.7"
 serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version = "1.6.3" }
 datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version = "0.5.0" }
 
-logback = { module = "ch.qos.logback:logback-classic", version = "1.5.3" }
+logback = { module = "ch.qos.logback:logback-classic", version = "1.5.4" }
 
 bootstrap-compose = { module = "app.softwork:bootstrap-compose", version = "0.1.15" }
 [plugins]
